@@ -52,7 +52,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew ruby pip virtualenvwrapper)
+plugins=(git brew ruby pip virtualenvwrapper gem)
 
 # User configuration
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
@@ -68,10 +68,13 @@ export MILEIQ_APP_KEY="E7EC264F-F470-4C7C-95AF-4B5D08C57346"
 source /usr/local/bin/virtualenvwrapper.sh
 
 alias ios="cd /Users/joe/dev/MileIQ/MileIQApp"
+alias uiq="cd /Users/joe/dev/MileIQ/UIQComponents"
 alias rest="cd /Users/joe/dev/MileIQ/MDLRest && workon rest"
+alias android="cd /Users/joe/dev/MileIQ/MileIQ-Android"
 alias web="cd /Users/joe/dev/MileIQ/MDLWebApp"
 alias dj="cd /Users/joe/dev/learn/django/first-app && workon dj"
 alias dj-rest="cd /Users/joe/dev/learn/django/rest && workon dj-rest"
+alias gdh="git diff HEAD"
 
 # Setup java
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
@@ -93,9 +96,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='vi'
 else
-  export EDITOR='mvim'
+  export EDITOR='vi'
 fi
 
 # Compilation flags
