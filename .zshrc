@@ -75,6 +75,7 @@ alias web="cd /Users/joe/dev/MileIQ/MDLWebApp"
 alias dj="cd /Users/joe/dev/learn/django/first-app && workon dj"
 alias dj-rest="cd /Users/joe/dev/learn/django/rest && workon dj-rest"
 alias gdh="git diff HEAD"
+alias lzsh='~/dev/learn/zsh'
 
 # Setup java
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
@@ -96,9 +97,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vi'
+  export EDITOR='vim'
 else
-  export EDITOR='vi'
+  export EDITOR='vim'
 fi
 
 # Compilation flags
