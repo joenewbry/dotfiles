@@ -1,6 +1,3 @@
-
-
-
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/joe/.oh-my-zsh
 
@@ -54,6 +51,32 @@ DISABLE_AUTO_UPDATE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew ruby pip virtualenvwrapper gem)
 
+
+# Setup java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
+
+# Setup MileIQ web app
+export WEBAPP_VARIATION_ROOT="https://s3.amazonaws.com/webapp-variations/staging/"
+export MILEIQ_HOST="http://localhost:5000"
+
+# Setup Postgress.app command line utilities link
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+
+export PATH="$PATH:/Users/joe/.sdkman/candidates/groovy/current/bin:/Users/joe/.sdkman/candidates/grails/current/bin:/Users/joe/.rvm/gems/ruby-2.2.3/bin:/Users/joe/.rvm/gems/ruby-2.2.3@global/bin:/Users/joe/.rvm/rubies/ruby-2.2.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/joe/.rvm/bin:/Applications/Postgres.app/Contents/Versions/latest/bin"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
+
 # User configuration
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
@@ -68,39 +91,43 @@ export MILEIQ_APP_KEY="E7EC264F-F470-4C7C-95AF-4B5D08C57346"
 source /usr/local/bin/virtualenvwrapper.sh
 
 alias ios="cd /Users/joe/dev/MileIQ/MileIQApp"
-alias uiq="cd /Users/joe/dev/MileIQ/UIQComponents"
+alias uiq="cd /Users/joe/dev/MileIQ/UIQComponentKit"
 alias rest="cd /Users/joe/dev/MileIQ/MDLRest && workon rest"
 alias android="cd /Users/joe/dev/MileIQ/MileIQ-Android"
 alias web="cd /Users/joe/dev/MileIQ/MDLWebApp"
 alias dj="cd /Users/joe/dev/learn/django/first-app && workon dj"
 alias dj-rest="cd /Users/joe/dev/learn/django/rest && workon dj-rest"
 alias gdh="git diff HEAD"
-alias lzsh='~/dev/learn/zsh'
+alias lzsh='cd ~/dev/learn/zsh'
+alias learn='cd ~/dev/learn'
+alias ez='vi ~/.zshrc'
+alias sz='source ~/.zshrc'
 
-# Setup java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
+# Set vi as default for zshrc
+# Add current mode to terminal status
+# Taken from http://dougblack.io/words/zsh-vi-mode.html
+bindkey -v
 
-# Setup MileIQ web app
-export WEBAPP_VARIATION_ROOT="https://s3.amazonaws.com/webapp-variations/staging/"
-export MILEIQ_HOST="http://localhost:5000"
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
 
-# Setup Postgress.app command line utilities link
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$(git_custom_status) $EPS1"
+    zle reset-prompt
+}
 
-export PATH="/Users/joe/.sdkman/candidates/groovy/current/bin:/Users/joe/.sdkman/candidates/grails/current/bin:/Users/joe/.rvm/gems/ruby-2.2.3/bin:/Users/joe/.rvm/gems/ruby-2.2.3@global/bin:/Users/joe/.rvm/rubies/ruby-2.2.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/joe/.rvm/bin:/Applications/Postgres.app/Contents/Versions/latest/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
 
-source $ZSH/oh-my-zsh.sh
+# Prevent overwritting files by accident
+setopt noclobber
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='vim'
-fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"

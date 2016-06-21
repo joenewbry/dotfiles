@@ -14,6 +14,7 @@ Bundle 'kana/vim-textobj-line.git'
 Bundle 'nelstrom/vim-textobj-rubyblock.git'
 
 " Git in vim
+Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
 
 call vundle#end()            " required
@@ -30,4 +31,10 @@ filetype plugin indent on    " required
 
 " Configuration
 set history=200
+inoremap jk <ESC>
+
+let mapleader = "\<Space>"
+filetype plugin indent on
+syntax on
+set encoding=utf-8
 
